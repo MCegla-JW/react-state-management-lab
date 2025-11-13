@@ -95,18 +95,33 @@ const App = () => {
       // Adding the fighter 
         const newTeamArray = [...team, fighter];
         setTeam(newTeamArray)
-        console.log(team);
-
-      // }
+      // Identify character to remove from zombiefighters array 
+      setZombieFighters(zombieFighters.filter(z => z.id !== fighter.id)) // z = each fighter in array, fighter = the one just added to the team
       } else {
         console.log('Not enough money');
     }
   }
+        console.log(team);
+        console.log(zombieFighters)
 
 return (
   <>
     <h1>Zombie Fighters</h1>
     <section>
+      <h2>Your Team</h2>
+      {team.length === 0 
+      ? <p>Pick some team members</p>
+      : (<ul>
+        {team.map((fighter) => (
+          <li key={fighter.id}>
+            <p>Name: {fighter.name}</p>
+            <img src={fighter.img} />
+            <p>Price: {fighter.price}</p>
+            <p> Strenght: {fighter.strength}</p>
+            <p>Agility: {fighter.agility}</p>
+          </li>
+        ))}
+      </ul>)}
       <h2>Money: ${money} </h2>
       <h3>Fighters</h3>
       <ul>
